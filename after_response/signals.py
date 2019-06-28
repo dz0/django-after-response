@@ -23,7 +23,7 @@ def run(func, *args, **kwargs):
 
 def run_em_all(sender, **kwargs):
     while len(function_queue):
-        func, args, kwargs = function_queue.pop()
+        func, args, kwargs = function_queue.pop(0)
         if AFTER_RESPONSE_RUN_ASYNC:
             threading.Thread(target=run, args=(func,) + args, kwargs=kwargs).start()
         else:
